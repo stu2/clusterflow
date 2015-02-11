@@ -100,7 +100,7 @@ foreach my $file (@$files){
 	}
 	my $annotated_file = $file."_annotated.sam";
 	my $counts_file = $file."_counts.txt";
-	$command .= "samtools view -h $file | htseq-count -o $annotated_file -t exon $stranded -q -i 'ID' - ".$config{gtf_path}." | sort -n -k 2 -r > $counts_file";
+	$command .= "samtools view -h $file | htseq-count -o $annotated_file -t exon $stranded -q - ".$config{gtf_path}." | sort -n -k 2 -r > $counts_file";
 	warn "\n###CFCMD ".join("\n###CFCMD ", split /\n/, $command)."\n\n";
 	
 	if(!system ($command)){
